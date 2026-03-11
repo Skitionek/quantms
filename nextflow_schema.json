@@ -1446,6 +1446,20 @@
                     "description": "Institutional config URL link.",
                     "hidden": true,
                     "fa_icon": "fas fa-users-cog"
+                },
+                "apptainer_cache_dir": {
+                    "type": "string",
+                    "description": "Path to a shared directory used for caching pulled Apptainer images (used by the hpc_apptainer profile).",
+                    "help_text": "When running with the `hpc_apptainer` profile, all Apptainer images are pulled once and stored in this directory so subsequent runs can reuse them. Defaults to `$HOME/.apptainer/cache` when not set.",
+                    "fa_icon": "fas fa-hdd",
+                    "hidden": true
+                },
+                "apptainer_bind_dir": {
+                    "type": "string",
+                    "description": "Extra filesystem path to bind-mount into every Apptainer container (used by the hpc_apptainer profile).",
+                    "help_text": "Set this to a shared project or scratch directory when your input/output data lives outside the paths that Apptainer auto-mounts. The path is passed to `apptainer.runOptions` as `--bind <path>:<path>`.",
+                    "fa_icon": "fas fa-link",
+                    "hidden": true
                 }
             }
         },

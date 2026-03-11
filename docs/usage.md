@@ -155,6 +155,20 @@ If `-profile` is not specified, the pipeline will run locally and expect all sof
   - A generic configuration profile to be used with [Charliecloud](https://charliecloud.io/)
 - `apptainer`
   - A generic configuration profile to be used with [Apptainer](https://apptainer.org/)
+- `hpc_apptainer`
+  - A configuration profile for generic HPC clusters using SLURM and [Apptainer](https://apptainer.org/). This profile enables Apptainer, configures the SLURM executor with sensible defaults (queue size, retry logic, shared-filesystem latency tolerance), and exposes two optional parameters:
+    - `--apptainer_cache_dir` — path to a shared directory for caching pulled Apptainer images (defaults to `$HOME/.apptainer/cache`).
+    - `--apptainer_bind_dir` — an extra filesystem path to bind-mount into every container (useful when input/output data lives outside the default auto-mount paths).
+  - Example:
+    ```bash
+    nextflow run bigbio/quantms \
+        -profile hpc_apptainer \
+        --apptainer_cache_dir /scratch/shared/apptainer \
+        --apptainer_bind_dir /scratch/myproject \
+        --input project.sdrf.tsv \
+        --database database.fasta \
+        --outdir results
+    ```
 - `wave`
   - A generic configuration profile to enable [Wave](https://seqera.io/wave/) containers. Use together with one of the above (requires Nextflow ` 24.03.0-edge` or later).
 - `conda`

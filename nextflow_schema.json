@@ -1449,16 +1449,23 @@
                 },
                 "apptainer_cache_dir": {
                     "type": "string",
-                    "description": "Path to a shared directory used for caching pulled Apptainer images (used by the hpc_apptainer profile).",
-                    "help_text": "When running with the `hpc_apptainer` profile, all Apptainer images are pulled once and stored in this directory so subsequent runs can reuse them. Defaults to `$HOME/.apptainer/cache` when not set.",
+                    "description": "Path to a shared directory used for caching pulled Apptainer images (used by the hpc_apptainer and lsf_apptainer profiles).",
+                    "help_text": "When running with the `hpc_apptainer` or `lsf_apptainer` profile, all Apptainer images are pulled once and stored in this directory so subsequent runs can reuse them. Defaults to `$HOME/.apptainer/cache` when not set.",
                     "fa_icon": "fas fa-hdd",
                     "hidden": true
                 },
                 "apptainer_bind_dir": {
                     "type": "string",
-                    "description": "Extra filesystem path to bind-mount into every Apptainer container (used by the hpc_apptainer profile).",
+                    "description": "Extra filesystem path to bind-mount into every Apptainer container (used by the hpc_apptainer and lsf_apptainer profiles).",
                     "help_text": "Set this to a shared project or scratch directory when your input/output data lives outside the paths that Apptainer auto-mounts. The path is passed to `apptainer.runOptions` as `--bind <path>:<path>`.",
                     "fa_icon": "fas fa-link",
+                    "hidden": true
+                },
+                "lsf_queue": {
+                    "type": "string",
+                    "description": "IBM Spectrum LSF queue name to submit jobs to (used by the lsf_apptainer profile).",
+                    "help_text": "When running with the `lsf_apptainer` profile, this value is passed to `bsub -q`. Leave unset to use the cluster default queue.",
+                    "fa_icon": "fas fa-server",
                     "hidden": true
                 }
             }
